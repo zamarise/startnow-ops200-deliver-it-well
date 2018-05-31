@@ -9,17 +9,17 @@ server.listen(4444);
 
 describe('server/app.js', function() {
   this.timeout(5000);
-  beforeEach((done) => {
-    
+  beforeEach(done => {
     done();
   });
 
-  afterEach((done) => {
-      done();
-  })
+  afterEach(done => {
+    done();
+  });
 
-  it('responds to /', (done) => {
-    chai.request(server)
+  it('responds to /', done => {
+    chai
+      .request(server)
       .get('/')
       .end((err, res) => {
         expect(err).not.exist;
@@ -28,13 +28,25 @@ describe('server/app.js', function() {
       });
   });
 
-  it('page says hello world', (done) => {
-  chai.request(server)
-    .get('/')
-    .end((err, res) => {
-      expect(err).not.exist;
-      expect(JSON.stringify(res.text)).to.contain('Hello World');
-      done();
-    });
+  it('page says hello world', done => {
+    chai
+      .request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(err).not.exist;
+        expect(JSON.stringify(res.text)).to.contain('Hello World');
+        done();
+      });
   });
-})
+
+  it('page says yes my tests pass', done => {
+    chai
+      .request(server)
+      .get('/')
+      .end((err, res) => {
+        expect(err).not.exist;
+        expect(JSON.stringify(res.text)).to.contain('Yes, my tests pass!');
+        done();
+      });
+  });
+});
