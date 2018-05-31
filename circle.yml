@@ -1,3 +1,8 @@
+deployment:
+  prod:
+    branch: master
+    heroku:
+      appname: zjm-ops200deliveritwell
 machine:
   node:
     version: 8.1.4
